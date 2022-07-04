@@ -12,6 +12,9 @@ public class LocalNetworkManager : NetworkManager
     [HideInInspector] public static string SteamworksSceneName = "Scene_Steamworks";
     [SerializeField] private GamePlayer gamePlayerPrefab;
     [SerializeField] public int minPlayers = 1;
+    /// <summary>
+    /// 房间内玩家列表
+    /// </summary>
     public List<GamePlayer> GamePlayers { get; } = new List<GamePlayer>();
 
     public bool CanStartGame

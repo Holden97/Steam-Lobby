@@ -97,4 +97,14 @@ public class PlayerListItem : MonoBehaviour
             PlayerReadyStatus.text = "NotReady";
         }
     }
+
+    public void BindData(GamePlayer player)
+    {
+        playerName = player.playerName;
+        connectionId = player.connetionId;
+        isPlayerReady = player.isPlayerReady;
+        playerSteamId = player.playerSteamId;
+
+        SetPlayerListItemValues();
+    }
 }
