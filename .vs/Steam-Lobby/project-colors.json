@@ -10,7 +10,32 @@
       "ProjectGuid": "06ae8862-2737-ead8-6aa5-9ec857a53f59",
       "DisplayName": "Mirror",
       "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    },
+    "83252d29-98da-b1de-0fc2-d53091bb002d": {
+      "ProjectGuid": "83252d29-98da-b1de-0fc2-d53091bb002d",
+      "DisplayName": "com.rlabrecque.steamworks.net",
+      "ColorIndex": 2
+    },
+    "f1df51f9-d949-804e-b9af-5a4f3f28ad7c": {
+      "ProjectGuid": "f1df51f9-d949-804e-b9af-5a4f3f28ad7c",
+      "DisplayName": "Mirror.Examples",
+      "ColorIndex": 3
+    },
+    "94b7c496-76e7-e24e-f1b4-d31f6ec1e1c5": {
+      "ProjectGuid": "94b7c496-76e7-e24e-f1b4-d31f6ec1e1c5",
+      "DisplayName": "Mirror.Authenticators",
+      "ColorIndex": 4
+    },
+    "d2f0e6f1-c621-4fe1-d5b6-47cc0a66f698": {
+      "ProjectGuid": "d2f0e6f1-c621-4fe1-d5b6-47cc0a66f698",
+      "DisplayName": "Mirror.Components",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 6
 }
