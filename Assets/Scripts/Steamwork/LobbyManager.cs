@@ -26,6 +26,9 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Button ReadyUpButton;
     [SerializeField] private Button StartGameButton;
 
+    /// <summary>
+    /// 是否已创建玩家列表
+    /// </summary>
     public bool havePlayerListItemBeenCreated = false;
     /// <summary>
     /// 玩家显示列表
@@ -66,6 +69,14 @@ public class LobbyManager : MonoBehaviour
         if (playerListItems.Count < networkManager.GamePlayers.Count)
         {
             CreateNewPlayerListItems();
+        }
+        if (playerListItems.Count > networkManager.GamePlayers.Count)
+        {
+            RemovePlayerListItems();
+        }
+        if (playerListItems.Count == networkManager.GamePlayers.Count)
+        {
+            UpdatePlayerListItems();
         }
     }
 
@@ -132,6 +143,7 @@ public class LobbyManager : MonoBehaviour
                 }
             }
         }
+        CheckIfAllPlayersAreReady();
     }
 
     void ChangeReadyUpButtonText()
@@ -192,17 +204,17 @@ public class LobbyManager : MonoBehaviour
         Debug.Log($"Executing CreatePlayerListItems. This many players to Create{networkManager.GamePlayers.Count}");
         foreach (var player in networkManager.GamePlayers)
         {
-            Debug.Log($"CreatePlayerListItems:Creating playerlistitem for player:{ player.playerName}");
+            Debug.Log($"CreatePlayerListItems:Creating playerlistitem for player:{player.playerName}");
             GameObject newPlayerListItem = Instantiate(PlayerListItemPrefab) as GameObject;
-            PlayerListItem listItem=newPlayerListItem.GetComponent<PlayerListItem>();
+            PlayerListItem listItem = newPlayerListItem.GetComponent<PlayerListItem>();
 
-            listItem.playerName = player.playerName;
-            listItem.playerName = player.playerName;
-            listItem.playerName = player.playerName;
-            listItem.playerName = player.playerName;
-            listItem.playerName = player.playerName;
+            listItem.BindData(player);
 
+            newPlayerListItem.transform.SetParent(ContentPanel.transform);
+            newPlayerListItem.transform.localScale = Vector3.one;
 
+            playerListItems.Add(listItem);
         }
+        havePlayerListItemBeenCreated = true;
     }
 }
