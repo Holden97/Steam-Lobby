@@ -29,14 +29,18 @@ public class LobbyManager : MonoBehaviour
     /// <summary>
     /// 是否已创建玩家列表
     /// </summary>
+    [HideInInspector]
     public bool havePlayerListItemBeenCreated = false;
     /// <summary>
     /// 玩家显示列表
     /// </summary>
     private List<PlayerListItem> playerListItems = new List<PlayerListItem>();
+    [HideInInspector]
     public GameObject localGamePlayerObject;
+    [HideInInspector]
     public GamePlayer localGamePlayerScript;
 
+    [HideInInspector]
     public ulong currentLobbyId;
     private LocalNetworkManager _networkmanager;
     private LocalNetworkManager networkManager
