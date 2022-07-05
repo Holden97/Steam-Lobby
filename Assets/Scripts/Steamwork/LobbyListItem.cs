@@ -26,4 +26,13 @@ public class LobbyListItem : MonoBehaviour
         Debug.Log($"JoinLobby:Player selected tojoin lobby with steam id of:{lobbySteamId}");
         SteamLobby.instance.JoinLobby(lobbySteamId);
     }
+
+    public void BindData(CSteamID lobbyID, string pchKey)
+    {
+        lobbySteamId = (CSteamID)lobbyID.m_SteamID;
+        lobbyName = SteamMatchmaking.GetLobbyData((CSteamID)lobbyID.m_SteamID, pchKey);
+        numberOfPlyaers = SteamMatchmaking.GetNumLobbyMembers((CSteamID)lobbyID.m_SteamID);
+        maxNumberOfPlayers = SteamMatchmaking.GetLobbyMemberLimit((CSteamID)lobbyID.m_SteamID);
+        SetLobbyItemValues();
+    }
 }
