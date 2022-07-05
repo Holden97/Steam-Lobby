@@ -29,6 +29,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject CreateLobbyCanvas;
     [SerializeField] private TMP_InputField lobbyNameInputField;
     [SerializeField] private Toggle friendsOnlyToggle;
+    /// <summary>
+    /// 玩家是否命名了自建房间
+    /// </summary>
     [HideInInspector]
     public bool didPlayerNameTheLobby = false;
     [HideInInspector]

@@ -8,8 +8,9 @@ using Steamworks;
 
 public class LocalNetworkManager : NetworkManager
 {
-    [HideInInspector] public static string SteamworksLobbySceneName = "Scene_SteamworksLobby";
+    [HideInInspector] public static string SteamworksLobbySceneName = "Assets/Scenes/Scene_SteamworksLobby.unity";
     [HideInInspector] public static string SteamworksSceneName = "Scene_Steamworks";
+    [HideInInspector] public static string SteamworksGameSceneName = "Scene_SteamworksGame";
     [SerializeField] private GamePlayer gamePlayerPrefab;
     [SerializeField] public int minPlayers = 1;
     /// <summary>
@@ -73,7 +74,7 @@ public class LocalNetworkManager : NetworkManager
     {
         if (CanStartGame && SceneManager.GetActiveScene().name == SteamworksLobbySceneName)
         {
-            ServerChangeScene(SteamworksLobbySceneName);
+            ServerChangeScene(SteamworksGameSceneName);
         }
     }
 

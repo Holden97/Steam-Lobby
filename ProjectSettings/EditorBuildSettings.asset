@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene_Steamworks.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Scene_SteamworksGame.unity
+    guid: cfb62235c7fd8f44aa7867951d107159
+  - enabled: 1
+    path: Assets/Scenes/Scene_SteamworksLobby.unity
+    guid: 82f20426a40428e45810f28ca1729df1
   m_configObjects: {}

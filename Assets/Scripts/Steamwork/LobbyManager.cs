@@ -1,4 +1,5 @@
 // Author：GuoYiBo
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,7 +103,6 @@ public class LobbyManager : MonoBehaviour
 
                 playerListItems.Add(newPlayerListItemScript);
             }
-
         }
     }
 
@@ -203,6 +203,15 @@ public class LobbyManager : MonoBehaviour
         localGamePlayerScript = localGamePlayerObject.GetComponent<GamePlayer>();
     }
 
+    public void UpdateLobbyName()
+    {
+        Debug.Log("UpdateLobbyName");
+        currentLobbyId = networkManager.GetComponent<SteamLobby>().current_lobbyID;
+        string lobbyName = SteamMatchmaking.GetLobbyData((CSteamID)currentLobbyId, "name");
+        Debug.Log("UpdateLobbyName: new lobby name will be: " + lobbyName);
+        LobbyNameText.text = lobbyName;
+    }
+
     private void CreatePlayerListItems()
     {
         Debug.Log($"Executing CreatePlayerListItems. This many players to Create{networkManager.GamePlayers.Count}");
@@ -220,5 +229,26 @@ public class LobbyManager : MonoBehaviour
             playerListItems.Add(listItem);
         }
         havePlayerListItemBeenCreated = true;
+    }
+
+    public void StartGame()
+    {
+        localGamePlayerScript.CanLobbyStartGame();
+    }
+
+    public void PlayerQuitLobby()
+    {
+        localGamePlayerScript.QuitLobby();
+    }
+
+    public void DestroyPlayerListItems()
+    {
+        foreach (PlayerListItem item in playerListItems)
+        {
+            GameObject playerListItemObject = item.gameObject;
+            Destroy(playerListItemObject);
+            playerListItemObject = null;
+        }
+        playerListItems.Clear();
     }
 }
