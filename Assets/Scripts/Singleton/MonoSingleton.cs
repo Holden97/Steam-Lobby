@@ -24,7 +24,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
                     GameObject root = new GameObject();
                     root.AddComponent<T>();
                     root.name = $"singleton_{nameof(T)}";
-                    return root.GetComponent<T>();
+                    instance = root.GetComponent<T>();
                 }
 
             }

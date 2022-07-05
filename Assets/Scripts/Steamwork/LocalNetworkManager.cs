@@ -62,7 +62,7 @@ public class LocalNetworkManager : NetworkManager
             GamePlayerInstance.connetionId = conn.connectionId;
             GamePlayerInstance.playerNumber = GamePlayers.Count + 1;
 
-            GamePlayerInstance.playerSteamId = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)SteamLobby.Instance.current_lobbyID, GamePlayers.Count);
+            GamePlayerInstance.playerSteamId = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)SteamLobby.instance.current_lobbyID, GamePlayers.Count);
 
             NetworkServer.AddPlayerForConnection(conn, GamePlayerInstance.gameObject);
             Debug.Log($"Player added.{GamePlayerInstance.playerName}.Player connection id:{GamePlayerInstance.connetionId}");

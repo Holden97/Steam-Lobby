@@ -51,6 +51,10 @@ public class MessageManager : NetworkBehaviour
 
     public void SendMessageToPlayers()
     {
-        if(!string.IsNullOrEmpty)
+        if (!string.IsNullOrEmpty(messageBox.text))
+        {
+            string newMessage = messageBox.text;
+            CmdSendMessageToPlayers(newMessage);
+        }
     }
 }

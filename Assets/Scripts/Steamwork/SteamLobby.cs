@@ -7,18 +7,7 @@ using System;
 
 public class SteamLobby : MonoBehaviour
 {
-    private static SteamLobby instance;
-    public static SteamLobby Instance
-    {
-        get
-        {
-            if(instance == null)
-            {
-                instance = new SteamLobby();
-            }
-            return instance;
-        }
-    }
+    public static SteamLobby instance { get; private set; }
 
     [SerializeField]
     private GameObject buttons = null;
@@ -31,7 +20,14 @@ public class SteamLobby : MonoBehaviour
 
 
     public ulong current_lobbyID;
+    public List<CSteamID> lobbyIDS = new List<CSteamID>();
+
     private const string HostAddressKey = "HostAddress";
+
+    private void Awake()
+    {
+        CreateInstance();
+    }
 
     private void Start()
     {
@@ -84,5 +80,24 @@ public class SteamLobby : MonoBehaviour
         buttons.SetActive(false);
 
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+    }
+
+    public void CreateInstance()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public void GetListOfLobbies()
+    {
+        if (lobbyIDS.Count > 0)
+        {
+            lobbyIDS.Clear();
+        }
+        SteamMatchmaking.AddRequestLobbyListFilterSlotsAvailable(1);
+
+        SteamAPICall_t try_getList = SteamMatchmaking.RequestLobbyList();
     }
 }

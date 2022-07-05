@@ -24,6 +24,6 @@ public class LobbyListItem : MonoBehaviour
     public void JoinLobby()
     {
         Debug.Log($"JoinLobby:Player selected tojoin lobby with steam id of:{lobbySteamId}");
-        SteamLobby.Instance.JoinLobby(lobbySteamId);
+        SteamLobby.instance.JoinLobby(lobbySteamId);
     }
 }
