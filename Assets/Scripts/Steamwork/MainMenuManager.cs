@@ -21,17 +21,20 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject LobbyListCanvas;
     [SerializeField] private GameObject LobbyListItemPrefab;
     [SerializeField] private GameObject ContentPanel;
-    [SerializeField] private GameObject LobbyListScrollRect;
     [SerializeField] private TMP_InputField searchBox;
+    [HideInInspector]
     public bool didPlayerSearchForLobbies = false;
 
     [Header("Create Lobby UI")]
     [SerializeField] private GameObject CreateLobbyCanvas;
     [SerializeField] private TMP_InputField lobbyNameInputField;
     [SerializeField] private Toggle friendsOnlyToggle;
+    [HideInInspector]
     public bool didPlayerNameTheLobby = false;
+    [HideInInspector]
     public string lobbyName;
 
+    [HideInInspector]
     public List<GameObject> listOfLobbyListItems = new List<GameObject>();
 
     public void CreateInstance()

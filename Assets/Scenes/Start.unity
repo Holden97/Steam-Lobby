@@ -1088,16 +1088,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d415df99ae68946408c85169bad5a846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createOrJoinButtons: {fileID: 0}
-  LobbyListCanvas: {fileID: 0}
-  LobbyListItemPrefab: {fileID: 0}
-  ContentPanel: {fileID: 0}
-  LobbyListScrollRect: {fileID: 0}
-  searchBox: {fileID: 0}
+  createOrJoinButtons: {fileID: 1683985634}
+  LobbyListCanvas: {fileID: 1789033990}
+  LobbyListItemPrefab: {fileID: 7900303412838315278, guid: 249592d50143264458e34cff3b7eda29, type: 3}
+  ContentPanel: {fileID: 1720651805}
+  searchBox: {fileID: 1492221799}
   didPlayerSearchForLobbies: 0
   CreateLobbyCanvas: {fileID: 0}
   lobbyNameInputField: {fileID: 1492221799}
-  friendsOnlyToggle: {fileID: 0}
+  friendsOnlyToggle: {fileID: 1036445909}
   didPlayerNameTheLobby: 0
   lobbyName: 
   listOfLobbyListItems: []
@@ -3172,7 +3171,7 @@ GameObject:
   - component: {fileID: 1492221800}
   - component: {fileID: 1492221799}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: SearchField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
