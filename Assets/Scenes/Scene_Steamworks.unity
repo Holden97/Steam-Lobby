@@ -664,7 +664,7 @@ MonoBehaviour:
   autoStartServerBuild: 1
   serverTickRate: 30
   offlineScene: Assets/Scenes/Scene_Steamworks.unity
-  onlineScene: 
+  onlineScene: Assets/Scenes/Scene_SteamworksLobby.unity
   transport: {fileID: 260667509}
   networkAddress: localhost
   maxConnections: 100

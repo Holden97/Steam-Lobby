@@ -196,9 +196,15 @@ public class LobbyManager : MonoBehaviour
             }
         }
     }
+    public void PlayerReadyUp()
+    {
+        Debug.Log("Executing PlayerReadyUp");
+        localGamePlayerScript.ChangeReadyStatus();
+    }
 
     public void FindLocalGamePlayer()
     {
+        //待优化
         localGamePlayerObject = GameObject.Find("LocalGamePlayer"); ;
         localGamePlayerScript = localGamePlayerObject.GetComponent<GamePlayer>();
     }

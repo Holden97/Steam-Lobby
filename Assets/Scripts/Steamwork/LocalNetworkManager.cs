@@ -8,7 +8,7 @@ using Steamworks;
 
 public class LocalNetworkManager : NetworkManager
 {
-    [HideInInspector] public static string SteamworksLobbySceneName = "Assets/Scenes/Scene_SteamworksLobby.unity";
+    [HideInInspector] public static string SteamworksLobbySceneName = "Scene_SteamworksLobby";
     [HideInInspector] public static string SteamworksSceneName = "Scene_Steamworks";
     [HideInInspector] public static string SteamworksGameSceneName = "Scene_SteamworksGame";
     [SerializeField] private GamePlayer gamePlayerPrefab;
@@ -37,7 +37,6 @@ public class LocalNetworkManager : NetworkManager
     public override void OnStartServer()
     {
         Debug.Log("Starting Server");
-        ServerChangeScene(SteamworksLobbySceneName);
     }
 
     public override void OnClientConnect()

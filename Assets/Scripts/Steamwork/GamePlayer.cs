@@ -114,11 +114,11 @@ public class GamePlayer : NetworkBehaviour
         {
             if (IsGameLeader)
             {
-                _networkManager.StopHost();
+                networkManager.StopHost();
             }
             else
             {
-                _networkManager.StopClient();
+                networkManager.StopClient();
             }
         }
     }

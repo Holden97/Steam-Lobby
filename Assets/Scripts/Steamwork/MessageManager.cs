@@ -12,7 +12,7 @@ public class MessageManager : NetworkBehaviour
     [SerializeField] private Text messageText;
     [SyncVar(hook = nameof(HandleNewMessageText))] public string messageTextSynced = "New Text";
 
-    public void HandleNewMessageText(string oldValue,string newValue)
+    public void HandleNewMessageText(string oldValue, string newValue)
     {
         Debug.Log($"HandleNewMessageText with new value:{newValue}");
         if (isServer)
@@ -43,10 +43,10 @@ public class MessageManager : NetworkBehaviour
         messageText.text = newMessage;
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     private void CmdSendMessageToPlayers(string newMessage)
     {
-        HandleNewMessageText(messageTextSynced,newMessage);
+        HandleNewMessageText(messageTextSynced, newMessage);
     }
 
     public void SendMessageToPlayers()
@@ -56,5 +56,10 @@ public class MessageManager : NetworkBehaviour
             string newMessage = messageBox.text;
             CmdSendMessageToPlayers(newMessage);
         }
+    }
+
+    public void BackToLobby()
+    {
+        
     }
 }

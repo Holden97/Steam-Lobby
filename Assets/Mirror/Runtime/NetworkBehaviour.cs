@@ -208,7 +208,7 @@ namespace Mirror
 
             // IMPORTANT: can't use .connectionToServer here because calling
             // a command on other objects is allowed if requireAuthority is
-            // false. other objects don't have a .connectionToServer.
+            // false. other objects don't have a3 .connectionToServer.
             // => so we always need to use NetworkClient.connection instead.
             // => see also: https://github.com/vis2k/Mirror/issues/2629
             if (NetworkClient.connection == null)
