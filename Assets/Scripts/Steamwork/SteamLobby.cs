@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using Steamworks;
 using System;
+//using System.Threading.Tasks;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -112,6 +113,7 @@ public class SteamLobby : MonoBehaviour
                 "name",
                 $"{SteamFriends.GetPersonaName()}'s lobby");
         }
+        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "Game", "StarryTravel");
     }
 
     public void HostLobby()
@@ -144,13 +146,37 @@ public class SteamLobby : MonoBehaviour
             lobbyIDS.Clear();
         }
         SteamMatchmaking.AddRequestLobbyListFilterSlotsAvailable(1);
-
+        SteamMatchmaking.AddRequestLobbyListStringFilter("Game", "StarryTravel", ELobbyComparison.k_ELobbyComparisonEqual);
         SteamAPICall_t try_getList = SteamMatchmaking.RequestLobbyList();
     }
-
+    //public static async Task<T> GetResult<T>(this SteamAPICall_t steamAPICall_t)
+    //{
+    //    bool runing = true;
+    //    CallResult<T> tempCall = CallResult<T>.Create();
+    //    T returnValue = default;
+    //    tempCall.Set(steamAPICall_t, (info, failure) =>
+    //    {
+    //        if (failure)
+    //        {
+    //            ESteamAPICallFailure reason = SteamUtils.GetAPICallFailureReason(tempCall.Handle);
+    //            Debug.LogError("OnLobbyMatchList encountered an IOFailure due to: " + reason);
+    //        }
+    //        else
+    //        {
+    //            returnValue = info;
+    //        }
+    //        runing = false;
+    //    });
+    //    while (runing)
+    //    {
+    //        await Task.Delay(10);
+    //    }
+    //    tempCall.Dispose();
+    //    return returnValue;
+    //}
     public void CreateNewLobby(ELobbyType lobbyType)
     {
-        SteamMatchmaking.CreateLobby(lobbyType, networkManager.maxConnections);
+        var steamInfo= SteamMatchmaking.CreateLobby(lobbyType, networkManager.maxConnections);
     }
 
     private void OnGetLobbyInfo(LobbyDataUpdate_t result)

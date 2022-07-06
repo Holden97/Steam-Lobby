@@ -18,7 +18,7 @@ public class LobbyListItem : MonoBehaviour
     public void SetLobbyItemValues()
     {
         LobbyNameText.text = lobbyName;
-        NumberOfPlayersText.text = $"Number of Players:{numberOfPlyaers}/{maxNumberOfPlayers}";
+        NumberOfPlayersText.text = $"Players:{numberOfPlyaers}/{maxNumberOfPlayers}";
     }
 
     public void JoinLobby()
