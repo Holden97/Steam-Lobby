@@ -30,7 +30,12 @@ public class SteamLobby : MonoBehaviour
     }
     private void Start()
     {
-        networkManager = GetComponent<NetworkManager>();
+        networkManager = NetworkManager.singleton;
+        if(networkManager == null)
+        {
+            Debug.LogError("networkManager is null!");
+            return;
+        }
 
         if (!SteamManager.Initialized) { return; }
         CreateInstance();

@@ -13,6 +13,8 @@ public class LocalNetworkManager : NetworkManager
     [HideInInspector] public static string SteamworksGameSceneName = "Scene_SteamworksGame";
     [SerializeField] private GamePlayer gamePlayerPrefab;
     [SerializeField] public int minPlayers = 1;
+    public GameObject netObject;
+    public SteamLobby steamLobby;
     /// <summary>
     /// 房间内玩家列表
     /// </summary>
@@ -81,7 +83,7 @@ public class LocalNetworkManager : NetworkManager
     {
         if (conn.identity != null)
         {
-            GamePlayer player =conn.identity.GetComponent<GamePlayer>();
+            GamePlayer player = conn.identity.GetComponent<GamePlayer>();
             GamePlayers.Remove(player);
         }
         base.OnServerDisconnect(conn);
@@ -93,20 +95,22 @@ public class LocalNetworkManager : NetworkManager
         GamePlayers.Clear();
     }
 
-    public void HostShutDownServer()
-    {
-        GameObject networkManagerObject = GameObject.Find("NetWorkManager");
-        Destroy(GetComponent<SteamManager>());
-        Destroy(networkManagerObject);
-        ResetStatics();
-        SceneManager.LoadScene(SteamworksSceneName);
-
-        Start();
-    }
-
     public override void OnDestroy()
     {
         base.OnDestroy();
         Debug.LogError($"localmanager destroy:{GetHashCode()}");
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        if (GameObject.Find(nameof(netObject)))
+        {
+            return;
+        }
+        if (netObject != null)
+        {
+            DontDestroyOnLoad(netObject);
+        }
     }
 }
