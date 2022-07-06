@@ -10,9 +10,6 @@ public class SteamLobby : MonoBehaviour
     public static SteamLobby instance { get; private set; }
     private List<GameObject> listOfLobbyListItems = new List<GameObject>();
 
-    [SerializeField]
-    private GameObject buttons = null;
-
     private NetworkManager networkManager;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
@@ -29,14 +26,14 @@ public class SteamLobby : MonoBehaviour
 
     private void Awake()
     {
-        CreateInstance();
+        Debug.LogError($"steamlobby awake!{GetHashCode()}");
     }
-
     private void Start()
     {
         networkManager = GetComponent<NetworkManager>();
 
         if (!SteamManager.Initialized) { return; }
+        CreateInstance();
 
         lobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         gameLobbyJoinRequested = Callback<GameLobbyJoinRequested_t>.Create(OnGameLobbyJoinRequested);
@@ -115,8 +112,6 @@ public class SteamLobby : MonoBehaviour
 
     public void HostLobby()
     {
-        buttons.SetActive(false);
-
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
     }
 
@@ -174,4 +169,8 @@ public class SteamLobby : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        Debug.LogError($"steamlobby ondestroy!:{GetHashCode()}");
+    }
 }

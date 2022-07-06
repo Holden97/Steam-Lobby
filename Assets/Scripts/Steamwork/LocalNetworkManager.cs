@@ -103,4 +103,10 @@ public class LocalNetworkManager : NetworkManager
 
         Start();
     }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        Debug.LogError($"localmanager destroy:{GetHashCode()}");
+    }
 }

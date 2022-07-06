@@ -636,10 +636,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 260667510}
-  - component: {fileID: 260667509}
-  - component: {fileID: 260667508}
-  - component: {fileID: 260667511}
   - component: {fileID: 260667507}
+  - component: {fileID: 260667508}
+  - component: {fileID: 260667509}
+  - component: {fileID: 260667511}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
