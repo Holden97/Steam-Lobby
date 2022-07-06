@@ -39,7 +39,7 @@ public class LobbyManager : MonoBehaviour
     [HideInInspector]
     public GameObject localGamePlayerObject;
     [HideInInspector]
-    public GamePlayer localGamePlayerScript;
+    public GamePlayer localPlayer;
 
     [HideInInspector]
     public ulong currentLobbyId;
@@ -140,7 +140,7 @@ public class LobbyManager : MonoBehaviour
                 if (item.connectionId == player.connetionId)
                 {
                     item.BindData(player);
-                    if (player == localGamePlayerScript)
+                    if (player == localPlayer)
                     {
                         ChangeReadyUpButtonText();
                     }
@@ -152,7 +152,7 @@ public class LobbyManager : MonoBehaviour
 
     void ChangeReadyUpButtonText()
     {
-        if (localGamePlayerScript.isPlayerReady)
+        if (localPlayer.isPlayerReady)
             ReadyUpButton.GetComponentInChildren<Text>().text = "Unready";
         else
             ReadyUpButton.GetComponentInChildren<Text>().text = "Ready Up";
@@ -178,7 +178,7 @@ public class LobbyManager : MonoBehaviour
         if (ready)
         {
             Debug.Log($"CheckIfAllPlayersAreReady:All players are ready!");
-            if (localGamePlayerScript.IsGameLeader)
+            if (localPlayer.IsGameLeader)
             {
                 Debug.Log("CheckIfAllPlayersAreReady:Local player is the game leader.You can start the game now");
                 StartGameButton.gameObject.SetActive(true);
@@ -199,14 +199,14 @@ public class LobbyManager : MonoBehaviour
     public void PlayerReadyUp()
     {
         Debug.Log("Executing PlayerReadyUp");
-        localGamePlayerScript.ChangeReadyStatus();
+        localPlayer.ChangeReadyStatus();
     }
 
     public void FindLocalGamePlayer()
     {
         //待优化
         localGamePlayerObject = GameObject.Find("LocalGamePlayer"); ;
-        localGamePlayerScript = localGamePlayerObject.GetComponent<GamePlayer>();
+        localPlayer = localGamePlayerObject.GetComponent<GamePlayer>();
     }
 
     public void UpdateLobbyName()
@@ -239,12 +239,17 @@ public class LobbyManager : MonoBehaviour
 
     public void StartGame()
     {
-        localGamePlayerScript.CanLobbyStartGame();
+        localPlayer.CanLobbyStartGame();
     }
 
     public void PlayerQuitLobby()
     {
-        localGamePlayerScript.QuitLobby();
+        localPlayer.QuitLobby();
+        //返回大厅时删除networkmanager节点 避免警告
+        if (networkManager != null && networkManager.gameObject.scene.name == "DontDestroyOnLoad")
+        {
+            Destroy(networkManager.gameObject);
+        }
     }
 
     public void DestroyPlayerListItems()
@@ -256,5 +261,10 @@ public class LobbyManager : MonoBehaviour
             playerListItemObject = null;
         }
         playerListItems.Clear();
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
     }
 }

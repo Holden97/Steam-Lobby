@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MessageManager : NetworkBehaviour
 {
@@ -43,6 +44,14 @@ public class MessageManager : NetworkBehaviour
         messageText.text = newMessage;
     }
 
+    private NetworkManager networkManager
+    {
+        get
+        {
+            return LocalNetworkManager.singleton;
+        }
+    }
+
     [Command(requiresAuthority = false)]
     private void CmdSendMessageToPlayers(string newMessage)
     {
@@ -58,8 +67,11 @@ public class MessageManager : NetworkBehaviour
         }
     }
 
-    public void BackToLobby()
+    public void QuitGame()
     {
-        
+        if (SceneManager.GetActiveScene().name == LocalNetworkManager.SteamworksGameSceneName)
+        {
+            networkManager?.ServerChangeScene(LocalNetworkManager.SteamworksLobbySceneName);
+        }
     }
 }

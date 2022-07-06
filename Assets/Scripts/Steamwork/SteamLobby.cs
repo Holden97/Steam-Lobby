@@ -26,19 +26,18 @@ public class SteamLobby : MonoBehaviour
 
     private void Awake()
     {
-        Debug.LogError($"steamlobby awake!{GetHashCode()}");
+        CreateInstance();
     }
     private void Start()
     {
         networkManager = NetworkManager.singleton;
-        if(networkManager == null)
+        if (networkManager == null)
         {
             Debug.LogError("networkManager is null!");
             return;
         }
 
         if (!SteamManager.Initialized) { return; }
-        CreateInstance();
 
         lobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         gameLobbyJoinRequested = Callback<GameLobbyJoinRequested_t>.Create(OnGameLobbyJoinRequested);
@@ -172,10 +171,5 @@ public class SteamLobby : MonoBehaviour
             lobbyIDS.Add(lobbyID);
             SteamMatchmaking.RequestLobbyData(lobbyID);
         }
-    }
-
-    private void OnDestroy()
-    {
-        Debug.LogError($"steamlobby ondestroy!:{GetHashCode()}");
     }
 }
