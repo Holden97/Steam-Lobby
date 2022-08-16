@@ -35,7 +35,12 @@
       "ProjectGuid": "d2f0e6f1-c621-4fe1-d5b6-47cc0a66f698",
       "DisplayName": "Mirror.Components",
       "ColorIndex": 5
+    },
+    "927f8d0b-a4b4-8926-8a17-c79dcfa88a70": {
+      "ProjectGuid": "927f8d0b-a4b4-8926-8a17-c79dcfa88a70",
+      "DisplayName": "Mirror.Editor",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 7
 }
